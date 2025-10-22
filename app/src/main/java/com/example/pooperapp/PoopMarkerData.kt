@@ -1,11 +1,12 @@
 package com.example.pooperapp
 
 import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.clustering.ClusterItem
 
 // TODO: Create item class for poop marker
 class PoopData() {
 
-    fun GetPoopData(): List<PoopMarkerData> {
+    fun getPoopData(): List<PoopMarkerData> {
         return listOf(
             PoopMarkerData(
                 location = LatLng(65.1763, 25.3532),
@@ -33,5 +34,12 @@ class PoopData() {
 
 data class PoopMarkerData(
     var location: LatLng,
-    var description: String? = null
-)
+    val name: String = "Howe was the poop?",
+    var description: String? = null,
+    var drawable: Int = R.drawable.poop_icon
+) : ClusterItem {
+    override fun getPosition(): LatLng = location
+    override fun getTitle(): String? = name
+    override fun getSnippet(): String? = description
+    override fun getZIndex(): Float? = 1f
+}

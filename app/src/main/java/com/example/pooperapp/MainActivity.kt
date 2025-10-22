@@ -29,25 +29,19 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp(modifier: Modifier = Modifier) {
     val ouluLocation = LatLng(65.0121, 25.4651)
+    val poopData = PoopData()
 
     Scaffold { innerPadding ->
 
         Maps(
             modifier = Modifier.padding(innerPadding),
             location = ouluLocation,
+            poopData = poopData.getPoopData()
             //mapProps = props
         )
     }
 }
 
-//@Composable
-//fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Text(
-//        text = "Hello $name!",
-//        modifier = modifier.padding(24.dp)
-//    )
-//}
-//
 @Preview(showBackground = true)
 @Composable
 fun MyAppPreview() {
