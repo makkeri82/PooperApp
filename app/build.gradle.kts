@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.secrets.gradle.plugin)
     implementation(libs.com.google.android.libraries.mapsplatform.secrets.gradle.plugin.gradle.plugin)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

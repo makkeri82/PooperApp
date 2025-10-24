@@ -1,4 +1,4 @@
-package com.example.pooperapp
+package com.example.pooperapp.presentation
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,15 +9,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.google.android.gms.maps.model.LatLng
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.pooperapp.data.PoopMarkerData
+import com.example.pooperapp.viewmodels.PooperViewModel
 
 @Composable
 fun PooperScreen(
-    modifier: Modifier = Modifier,
-    startLocation: LatLng,
-    pooperViewModel: PooperViewModel = viewModel()
+    pooperViewModel: PooperViewModel,
+    modifier: Modifier = Modifier
+
 ) {
-    var newPoop =
+
+    val ouluLocation = LatLng(65.0121, 25.4651)
+
+    val newPoop =
         PoopMarkerData(
+            id = 99,
             location = LatLng(65.1299, 25.3490),
             description = "Good"
         )
@@ -28,14 +34,17 @@ fun PooperScreen(
     ) {
         Maps(
             modifier = Modifier.fillMaxSize(),
-            location = startLocation,
+            location = ouluLocation,
             poopData = pooperViewModel.poops
         )
         PooperButton(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(16.dp),
-            onClick = { pooperViewModel.addNewPoop(newPoop) }
+            onClick = { pooperViewModel.addPoop(
+                newPoop.location,
+                newPoop.description)
+            }
         )
     }
 }

@@ -1,5 +1,7 @@
-package com.example.pooperapp
+package com.example.pooperapp.data
 
+import androidx.compose.runtime.toMutableStateList
+import com.example.pooperapp.R
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.clustering.ClusterItem
 
@@ -9,22 +11,27 @@ class PoopData() {
     fun getPoopData(): List<PoopMarkerData> {
         return listOf(
             PoopMarkerData(
+                id = 1,
                 location = LatLng(65.1763, 25.3532),
                 description = "smelly"
             ),
             PoopMarkerData(
+                id = 2,
                 location = LatLng(65.0121, 25.4651),
                 description = "Good"
             ),
             PoopMarkerData(
+                id = 3,
                 location = LatLng(65.1286, 25.3567),
                 description = "not good"
             ),
             PoopMarkerData(
+                id = 4,
                 location = LatLng(65.1290, 25.3580),
                 description = "bad"
             ),
             PoopMarkerData(
+                id = 5,
                 location = LatLng(65.1299, 25.3590),
                 description = "water"
             ),
@@ -33,6 +40,7 @@ class PoopData() {
 }
 
 data class PoopMarkerData(
+    var id: Int,
     var location: LatLng,
     val name: String = "Howe was the poop?",
     var description: String? = null,
