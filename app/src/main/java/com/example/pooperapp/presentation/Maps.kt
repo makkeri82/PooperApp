@@ -25,6 +25,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.example.pooperapp.R
 import com.example.pooperapp.data.PoopMarkerData
+import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.android.gms.maps.CameraUpdateFactory
 
 @SuppressLint("UnrememberedMutableState")
@@ -33,7 +34,9 @@ import com.google.android.gms.maps.CameraUpdateFactory
 fun Maps(
     modifier: Modifier = Modifier,
     location: LatLng,
-    poopData: List<PoopMarkerData>) {
+    poopData: List<PoopMarkerData>,
+    permissions: MultiplePermissionsState
+) {
     Surface(
         modifier = modifier
     ) {
@@ -41,21 +44,8 @@ fun Maps(
             position = CameraPosition.fromLatLngZoom(location, 10f)
         }
 
-        // ADD PERMISSIONS
-        val locationPermission = rememberMultiplePermissionsState(
-            permissions = listOf(
-                "android.permission.ACCESS_FINE_LOCATION",
-                "android.permission.ACCESS_COARSE_LOCATION"
-            )
-        )
-
-        // REQUEST PERMISSIONS DIALOG
-        LaunchedEffect(key1 = locationPermission.permissions) {
-            locationPermission.launchMultiplePermissionRequest()
-        }
-
         val mapProps = MapProperties(
-            isMyLocationEnabled = locationPermission.allPermissionsGranted,
+            isMyLocationEnabled = permissions.allPermissionsGranted,
             isTrafficEnabled = false,
             isIndoorEnabled = false
         )

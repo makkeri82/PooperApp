@@ -14,7 +14,6 @@ class PoopRepositoryImpl (
     val poops: SnapshotStateList<PoopMarkerData> get() = _poops
 
     override fun getPoops(): List<PoopMarkerData> {
-        println("GET POOPS CALLED")
         return poops
     }
 
