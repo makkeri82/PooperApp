@@ -9,10 +9,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.Composable
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
@@ -33,7 +31,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 @Composable
 fun Maps(
     modifier: Modifier = Modifier,
-    location: LatLng,
+    startLocation: LatLng,
     poopData: List<PoopMarkerData>,
     permissions: MultiplePermissionsState
 ) {
@@ -41,7 +39,7 @@ fun Maps(
         modifier = modifier
     ) {
         val cameraPositionState = rememberCameraPositionState {
-            position = CameraPosition.fromLatLngZoom(location, 10f)
+            position = CameraPosition.fromLatLngZoom(startLocation, 10f)
         }
 
         val mapProps = MapProperties(

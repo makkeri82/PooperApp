@@ -18,8 +18,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pooperapp.presentation.PooperScreen
 import com.example.pooperapp.viewmodels.PooperViewModel
 import com.example.pooperapp.viewmodels.viewModelFactory
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,11 +30,12 @@ class MainActivity : ComponentActivity() {
                         PooperViewModel(PooperApp.pooperModule)
                     }
                 )
-                Surface(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    PooperScreen(viewModel)
-                }
+//                Surface(
+//                    modifier = Modifier.fillMaxSize()
+//                ) {
+//                    PooperScreen(viewModel)
+//                }
+                PooperScreen(viewModel)
             }
         }
     }
@@ -46,6 +45,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyAppPreview() {
     PooperAppTheme {
-        // MyApp()
+        // PooperScreen(viewModel)
     }
 }

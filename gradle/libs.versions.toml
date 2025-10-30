@@ -13,6 +13,9 @@ mapsComposeVersion = "6.12.1"
 secretsGradlePlugin = "2.0.1"
 comGoogleAndroidLibrariesMapsplatformSecretsGradlePluginGradlePlugin = "2.0.1"
 playServicesLocation = "21.3.0"
+adsMobileSdk = "0.21.0-beta01"
+navigationRuntimeKtx = "2.9.5"
+navigationCompose = "2.9.5"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
@@ -36,6 +39,9 @@ maps-compose-widgets = { module = "com.google.maps.android:maps-compose-widgets"
 secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePlugin" }
 com-google-android-libraries-mapsplatform-secrets-gradle-plugin-gradle-plugin = { group = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", name = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin.gradle.plugin", version.ref = "comGoogleAndroidLibrariesMapsplatformSecretsGradlePluginGradlePlugin" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+ads-mobile-sdk = { group = "com.google.android.libraries.ads.mobile.sdk", name = "ads-mobile-sdk", version.ref = "adsMobileSdk" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

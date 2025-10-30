@@ -14,6 +14,8 @@ import androidx.compose.ui.unit.dp
 class Navigation {
 }
 
+// NOTE: atm not in use. Future features
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PooperTopBar() {

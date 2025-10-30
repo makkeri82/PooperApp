@@ -37,4 +37,26 @@ class PooperViewModel(
             }
         }
     }
+
+    fun getCurrentLocation(): LatLng {
+
+        // TODO: Default location is home location, atm coors are at Oulu
+        var returnValue: LatLng = LatLng(65.0121, 25.4651)
+
+        viewModelScope.launch {
+            val location = pooperModule.locationRepo.getCurrentLocation()
+            println(buildString {
+                append("PooperViewModel::getCurrentLocation(): from pooperModule: ")
+                append(location.toString())
+            })
+            location?.let {
+                returnValue = location
+            }
+        }
+        println(buildString {
+            append("PooperViewModel::getCurrentLocation(): ")
+            append(returnValue.toString())
+        })
+        return returnValue
+    }
 }
