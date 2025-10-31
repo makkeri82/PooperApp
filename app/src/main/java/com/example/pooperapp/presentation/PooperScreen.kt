@@ -35,11 +35,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.pooperapp.R
-import com.example.pooperapp.data.PoopMarkerData
 import com.example.pooperapp.viewmodels.PooperViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
-import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPermissionsApi::class)
@@ -126,9 +124,7 @@ fun PooperScreen(
                         ) {
                             composable(DrawerScreens.Map.route) {
                                 MapScreen(
-                                    modifier = Modifier.fillMaxSize(),
                                     pooperViewModel = pooperViewModel,
-                                    startLocation = pooperViewModel.getCurrentLocation(),
                                     locationPermission = locationPermission
                                 )
                             }
@@ -139,7 +135,6 @@ fun PooperScreen(
                                 PoopsListScreen()
                             }
                         }
-
                         ShowDrawerButton(
                             onClick = { scope.launch { drawerState.open() } },
                             modifier = Modifier
