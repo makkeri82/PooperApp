@@ -7,12 +7,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.automirrored.filled.Logout
-import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
@@ -30,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -49,16 +48,6 @@ fun PooperScreen(
     pooperViewModel: PooperViewModel,
     navController: NavHostController = rememberNavController()
 ) {
-
-    val ouluLocation = LatLng(65.0121, 25.4651)
-
-    val newPoop =
-        PoopMarkerData(
-            id = 99,
-            location = LatLng(65.1299, 25.3490),
-            description = "Good"
-        )
-
     // ADD PERMISSIONS
     val locationPermission = rememberMultiplePermissionsState(
         permissions = listOf(
@@ -84,7 +73,7 @@ fun PooperScreen(
                 ModalDrawerSheet {
                     Image(
                         painter = painterResource(R.drawable.profile_placeholder),
-                        contentDescription = "App",
+                        contentDescription = stringResource(id = R.string.pooper_screen_cd_app),
                         modifier = Modifier
                             .background(Color.Transparent)
                             .padding(16.dp)
@@ -110,13 +99,13 @@ fun PooperScreen(
                     }
                     Spacer(modifier = Modifier.weight(1f))
                     NavigationDrawerItem (
-                        label = { Text("Help and feedback") },
+                        label = { Text(stringResource(id = R.string.pooper_screen_help_and_feedback)) },
                         selected = false,
                         icon = { Icon(Icons.AutoMirrored.Default.Help, contentDescription = null) },
                         onClick = {/* TODO() Create help and feedback screen */}
                     )
                     NavigationDrawerItem (
-                        label = { Text("Log out") },
+                        label = { Text(stringResource(id = R.string.pooper_screen_log_out)) },
                         selected = false,
                         icon = { Icon(Icons.AutoMirrored.Filled.Logout, contentDescription = "Logout")},
                         onClick = {/* TODO() Create help and log out screen */}

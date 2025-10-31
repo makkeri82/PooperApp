@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PooperApp</string>
+    <string name="profile_screen_age_in_months">Age(months)</string>
+    <string name="profile_screen_weight_in_kg">Weight(kg)</string>
+    <string name="profile_screen_shoulder_height_in_cm">Shoulder height(cm)</string>
+    <string name="pooper_screen_poop_description">Good</string>
+    <string name="pooper_screen_cd_app">App</string>
+    <string name="pooper_screen_help_and_feedback">Help and feedback</string>
+    <string name="pooper_screen_log_out">Log out</string>
 </resources>
