@@ -6,6 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.pooperapp.data.PoopMarkerData
 import com.example.pooperapp.di.PooperModule
 import com.google.android.gms.maps.model.LatLng
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class PooperViewModel(
@@ -15,18 +18,18 @@ class PooperViewModel(
     val poops: SnapshotStateList<PoopMarkerData>
         get() = pooperModule.pooperRepo.getPoops() as SnapshotStateList<PoopMarkerData>
 
-    fun addPoop(/*location: LatLng, description: String?*/) {
-        val newId = (poops.maxOfOrNull { it.id } ?: 0) + 1
+    private val _locationUiState = MutableStateFlow<LocationUiState>(LocationUiState.Loading)
+    val locationUiState: StateFlow<LocationUiState> = _locationUiState.asStateFlow()
 
-//        println("addPoop: ID: " + newId)
-//        println("location, LAT: " + location.latitude + ", LONG: " + location.longitude)
-//        println("addPoop: description: " + description)
+    init {
+        getCurrentLocation()
+    }
+
+    fun addPoop() {
+        val newId = (poops.maxOfOrNull { it.id } ?: 0) + 1
 
         viewModelScope.launch {
             val loc = pooperModule.locationRepo.getCurrentLocation()
-
-            // println("loc, LAT: " + loc?.latitude + ", LONG: " + loc?.longitude)
-
             loc?.let {
                 pooperModule.pooperRepo.addPoop(PoopMarkerData(
                     id = newId,
@@ -38,25 +41,16 @@ class PooperViewModel(
         }
     }
 
-    fun getCurrentLocation(): LatLng {
-
-        // TODO: Default location is home location, atm coors are at Oulu
-        var returnValue: LatLng = LatLng(65.0121, 25.4651)
-
+    fun getCurrentLocation() {
         viewModelScope.launch {
+            // Thread.sleep(5000)
+            _locationUiState.value = LocationUiState.Loading
             val location = pooperModule.locationRepo.getCurrentLocation()
-            println(buildString {
-                append("PooperViewModel::getCurrentLocation(): from pooperModule: ")
-                append(location.toString())
-            })
-            location?.let {
-                returnValue = location
+            if (location != null) {
+                _locationUiState.value = LocationUiState.Success(location)
+            } else {
+                _locationUiState.value = LocationUiState.Error("Failed to get current location.")
             }
         }
-        println(buildString {
-            append("PooperViewModel::getCurrentLocation(): ")
-            append(returnValue.toString())
-        })
-        return returnValue
     }
 }
